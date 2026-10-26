@@ -1,0 +1,15 @@
+{
+  "name": "sanaa-yetu-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sanaa Yetu art and culture showcase with Node.js, SQLite, and PostgreSQL authentication storage",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
+}

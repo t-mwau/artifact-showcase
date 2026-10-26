@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f0e8">
+    <meta name="description" content="Contact Sanaa Yetu about African art, culture, collaborations, and stories.">
+    <title>Get in touch — Sanaa Yetu</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+        :root {
+            --paper: #f4f0e8;
+            --paper-light: #fbf9f4;
+            --ink: #20211d;
+            --muted: #77776f;
+            --line: #ded9cf;
+            --rust: #a84f32;
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .site-header {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .header-inner {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--rust);
+            border-radius: 50%;
+            color: var(--rust);
+            font-family: var(--serif);
+            font-size: 20px;
+        }
+
+        .brand-copy {
+            width: 190px;
+            overflow: hidden;
+        }
+
+        .brand-copy marquee {
+            display: block;
+            width: 100%;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .12em;
+        }
+
+        .brand-copy .tagline {
+            color: var(--rust);
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .home-link {
+            font-size: 11px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .home-link:hover,
+        .contact-link:hover {
+            color: var(--rust);
+        }
+
+        .account-trigger {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            background: transparent;
+            cursor: pointer;
+            font: inherit;
+            font-size: 10px;
+        }
+
+        .account-trigger:hover,
+        .account-trigger:focus-visible {
+            border-color: var(--rust);
+            color: var(--rust);
+        }
+
+        main {
+            padding-block: clamp(48px, 8vw, 94px);
+        }
+
+        .eyebrow {
+            margin-bottom: 14px;
+            color: var(--rust);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            letter-spacing: -.035em;
+        }
+
+        h1 {
+            max-width: 680px;
+            margin: 0;
+            font-size: clamp(54px, 9vw, 96px);
+            line-height: 1.02;
+        }
+
+        .intro {
+            max-width: 540px;
+            margin: 20px 0 48px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .contact-layout {
+            align-items: stretch;
+        }
+
+        .contact-details,
+        .contact-form-card {
+            height: 100%;
+            padding: clamp(24px, 4vw, 42px);
+        }
+
+        .contact-details {
+            background: #e9e3d8;
+        }
+
+        .contact-details h2,
+        .contact-form-card h2 {
+            margin: 0 0 25px;
+            font-size: clamp(28px, 3vw, 38px);
+        }
+
+        .contact-item {
+            padding-block: 18px;
+            border-top: 1px solid #d4cdbf;
+        }
+
+        .contact-item span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .contact-link {
+            display: inline-block;
+            overflow-wrap: anywhere;
+            font-size: clamp(15px, 2vw, 19px);
+            transition: color .2s ease;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--rust);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.6;
+        }
+
+        .contact-form-card {
+            border: 1px solid var(--line);
+            background: var(--paper-light);
+        }
+
+        .form-label {
+            margin-bottom: 7px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .04em;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 48px;
+            border-color: var(--line);
+            border-radius: 0;
+            background-color: #fffefa;
+            font-family: var(--sans);
+            font-size: 13px;
+        }
+
+        textarea.form-control {
+            min-height: 138px;
+            resize: vertical;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--rust);
+            box-shadow: 0 0 0 .2rem #a84f3220;
+        }
+
+        .submit-button {
+            min-height: 48px;
+            padding-inline: 22px;
+            border: 1px solid var(--ink);
+            border-radius: 0;
+            background: var(--ink);
+            color: var(--paper-light);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .submit-button:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .form-feedback {
+            min-height: 22px;
+            margin: 14px 0 0;
+            color: #46583c;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .form-feedback a {
+            color: var(--rust);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .site-footer {
+            padding-block: 20px 28px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        @media (max-width: 575.98px) {
+            .header-inner {
+                min-height: 70px;
+            }
+
+            .brand-copy {
+                width: 160px;
+            }
+
+            .home-link {
+                font-size: 9px;
+            }
+
+            .header-actions {
+                gap: 8px;
+            }
+
+            .account-trigger {
+                padding: 8px;
+            }
+
+            .intro {
+                margin-bottom: 32px;
+                font-size: 13px;
+            }
+
+            .contact-details,
+            .contact-form-card {
+                padding: 24px 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Sanaa Yetu home">
+                <span class="brand-mark" aria-hidden="true">S</span>
+                <span class="brand-copy" aria-hidden="true">
+                    <marquee direction="left" scrollamount="3">SANAA YETU · SANAA YETU ·</marquee>
+                    <marquee class="tagline" direction="left" scrollamount="2">ART HELD IN MEMORY · ART HELD IN MEMORY ·</marquee>
+                </span>
+            </a>
+            <div class="header-actions">
+                <a class="home-link" href="index.html">Back to home <span aria-hidden="true">↗</span></a>
+                <button class="account-trigger" type="button" data-account-open>Sign in</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <p class="eyebrow">We'd love to hear from you</p>
+        <h1>Let’s start a conversation.</h1>
+        <p class="intro">Have a question, a story to share, or an idea for working together? Reach us directly or send a note using the form.</p>
+
+        <div class="row g-4 contact-layout">
+            <section class="col-12 col-lg-5" aria-labelledby="contact-details-title">
+                <div class="contact-details">
+                    <p class="eyebrow">Contact details</p>
+                    <h2 id="contact-details-title">Find your way to us.</h2>
+                    <div class="contact-item">
+                        <span>Call or WhatsApp</span>
+                        <a class="contact-link" href="tel:+254114077400">+254 114 077 400</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>Email</span>
+                        <a class="contact-link" href="mailto:savannahinnovativeacademy@gmail.com">savannahinnovativeacademy@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>Instagram</span>
+                        <a class="social-link" href="https://www.instagram.com/tim-mulwa/" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"></circle>
+                            </svg>
+                            @tim-mulwa <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="col-12 col-lg-7" aria-labelledby="message-title">
+                <div class="contact-form-card">
+                    <p class="eyebrow">Send a note</p>
+                    <h2 id="message-title">What’s on your mind?</h2>
+                    <form id="contact-form">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="name">Your name</label>
+                                <input class="form-control" id="name" name="name" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="email">Email address</label>
+                                <input class="form-control" id="email" name="email" type="email" autocomplete="email" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="topic">What would you like to talk about?</label>
+                                <select class="form-select" id="topic" name="topic" required>
+                                    <option value="" selected disabled>Choose a topic</option>
+                                    <option>Art and culture</option>
+                                    <option>Share a story</option>
+                                    <option>Collaboration</option>
+                                    <option>Something else</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="message">Your message</label>
+                                <textarea class="form-control" id="message" name="message" required></textarea>
+                            </div>
+                            <div class="col-12 d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+                                <button class="btn submit-button" type="submit">Prepare your message</button>
+                                <span class="small text-secondary">Your email app will open so you can send it.</span>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between gap-2">
+            <span>© <span id="current-year">2026</span> Sanaa Yetu</span>
+            <a href="index.html">Return to the collection</a>
+        </div>
+    </footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

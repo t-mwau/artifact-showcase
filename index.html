@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f0e8">
+    <meta name="description" content="Sanaa Yetu is a living archive of African art, objects, and the stories carried through generations.">
+    <title>Sanaa Yetu — Art, held in memory</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+        :root {
+            --paper: #f4f0e8;
+            --paper-light: #fbf9f4;
+            --ink: #20211d;
+            --muted: #77776f;
+            --line: #ded9cf;
+            --rust: #a84f32;
+            --rust-dark: #813b26;
+            --olive: #667057;
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+            --page-width: 1360px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            color: inherit;
+            font: inherit;
+        }
+
+        .page-shell {
+            width: min(calc(100% - 96px), var(--page-width));
+            margin-inline: auto;
+        }
+
+        .site-header {
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-wrap {
+            min-height: 88px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .nav-links,
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 31px;
+        }
+
+        .nav-links a,
+        .nav-actions a {
+            font-size: 11px;
+            letter-spacing: .055em;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-actions a:hover {
+            color: var(--rust);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: center;
+        }
+
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--rust);
+            border-radius: 50%;
+            color: var(--rust);
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1;
+        }
+
+        .brand-name {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: .12em;
+        }
+
+        .site-header .brand-copy {
+            width: 174px;
+            display: grid;
+            gap: 3px;
+            overflow: hidden;
+        }
+
+        .site-header .brand-name,
+        .site-header .brand-tagline {
+            display: block;
+            width: 100%;
+            color: var(--ink);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .site-header .brand-name {
+            font-size: 16px;
+        }
+
+        .site-header .brand-tagline {
+            color: var(--rust);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .12em;
+        }
+
+        .account-trigger {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            background: transparent;
+            cursor: pointer;
+            font-size: 10px;
+            letter-spacing: .06em;
+            white-space: nowrap;
+        }
+
+        .account-trigger:hover,
+        .account-trigger:focus-visible {
+            border-color: var(--rust);
+            color: var(--rust);
+        }
+
+        .nav-actions {
+            justify-content: flex-end;
+            gap: 24px;
+        }
+
+        .nav-icon {
+            width: 19px;
+            height: 19px;
+            display: inline-block;
+            vertical-align: middle;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 8px;
+            border: 0;
+            background: none;
+            cursor: pointer;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: .94fr 1.06fr;
+            gap: clamp(40px, 7vw, 112px);
+            align-items: center;
+            padding-block: 62px 84px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 22px;
+            color: var(--rust);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 25px;
+            height: 1px;
+            content: "";
+            background: currentColor;
+        }
+
+        .hero h1 {
+            max-width: 570px;
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(52px, 6.2vw, 88px);
+            font-weight: 500;
+            letter-spacing: -.055em;
+            line-height: .99;
+        }
+
+        .hero h1 em {
+            color: var(--rust);
+            font-weight: 500;
+        }
+
+        .hero-copy {
+            max-width: 430px;
+            margin: 23px 0 29px;
+            color: #66665e;
+            font-size: 14px;
+            line-height: 1.85;
+        }
+
+        .button-link {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 0 20px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper-light);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .button-link:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .button-link svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 490px;
+            background: #c8b59c;
+        }
+
+        .hero-art img {
+            width: 100%;
+            height: 490px;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .image-caption {
+            position: absolute;
+            right: -18px;
+            bottom: 27px;
+            max-width: 245px;
+            padding: 18px 20px;
+            background: var(--paper-light);
+            box-shadow: 0 8px 32px #25251c18;
+        }
+
+        .image-caption span {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--rust);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .image-caption strong {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .image-caption small {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 26px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2,
+        .story-copy h2,
+        .newsletter h2 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 500;
+            letter-spacing: -.04em;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--ink);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .text-link svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .collection {
+            padding-block: 50px 87px;
+            border-top: 1px solid var(--line);
+        }
+
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .artifact-card {
+            min-width: 0;
+        }
+
+        .artifact-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1.1 / 1;
+            background: #ddd4c7;
+        }
+
+        .artifact-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform .55s cubic-bezier(.2, .7, .25, 1);
+        }
+
+        .artifact-card:hover .artifact-image img {
+            transform: scale(1.035);
+        }
+
+        .artifact-index {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            padding: 7px 9px;
+            background: var(--paper-light);
+            color: var(--ink);
+            font-size: 9px;
+            letter-spacing: .08em;
+        }
+
+        .artifact-meta {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 15px;
+        }
+
+        .artifact-meta h3 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .artifact-meta p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: .04em;
+        }
+
+        .artifact-year {
+            padding-top: 4px;
+            color: var(--rust);
+            font-size: 10px;
+            letter-spacing: .06em;
+            white-space: nowrap;
+        }
+
+        .story-band {
+            display: grid;
+            grid-template-columns: 1.02fr .98fr;
+            min-height: 420px;
+            margin-bottom: 90px;
+            background: #e8e2d6;
+        }
+
+        .story-image {
+            min-height: 420px;
+            background: #aaa18d;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .story-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: clamp(34px, 6vw, 84px);
+        }
+
+        .story-copy h2 {
+            max-width: 440px;
+            font-size: clamp(36px, 4.3vw, 54px);
+            line-height: 1.06;
+        }
+
+        .story-copy > p:not(.eyebrow) {
+            max-width: 390px;
+            margin: 18px 0 25px;
+            color: #67675e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .newsletter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 36px;
+            padding-block: 43px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .newsletter h2 {
+            font-size: 32px;
+        }
+
+        .newsletter p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .newsletter-form {
+            width: min(100%, 405px);
+            display: flex;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            min-width: 0;
+            padding: 13px 5px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--ink);
+            font: inherit;
+            font-size: 12px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #89877e;
+        }
+
+        .newsletter-form button {
+            padding: 0 4px 0 15px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .newsletter-form button svg {
+            width: 19px;
+            height: 19px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .form-message {
+            min-height: 18px;
+            margin-top: 7px;
+            color: var(--olive);
+            font-size: 11px;
+        }
+
+        .site-footer {
+            padding-block: 40px 28px;
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding-bottom: 28px;
+        }
+
+        .footer-note {
+            max-width: 260px;
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #55564f;
+            font-size: 10px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: .06em;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                width: min(calc(100% - 48px), var(--page-width));
+            }
+
+            .nav-wrap {
+                min-height: 76px;
+            }
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .nav-links a,
+            .nav-actions a {
+                font-size: 10px;
+            }
+
+            .hero {
+                gap: 36px;
+                padding-block: 50px 66px;
+            }
+
+            .hero-art,
+            .hero-art img {
+                min-height: 420px;
+                height: 420px;
+            }
+
+            .story-copy {
+                padding: 36px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .page-shell {
+                width: calc(100% - 38px);
+            }
+
+            .nav-wrap {
+                min-height: 68px;
+                grid-template-columns: 1fr auto 1fr;
+            }
+
+            .brand {
+                gap: 7px;
+            }
+
+            .brand-mark {
+                width: 28px;
+                height: 28px;
+                font-size: 17px;
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
+
+            .site-header .brand-copy {
+                width: 145px;
+            }
+
+            .site-header .brand-name {
+                font-size: 14px;
+            }
+
+            .site-header .brand-tagline {
+                font-size: 9px;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+                justify-self: start;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 19px 15px;
+                border-bottom: 1px solid var(--line);
+                background: var(--paper);
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 13px 0;
+                border-bottom: 1px solid var(--line);
+                font-size: 11px;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: 0;
+            }
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .nav-actions .nav-label {
+                display: none;
+            }
+
+            .account-trigger {
+                padding: 8px;
+                font-size: 9px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding-block: 45px 60px;
+            }
+
+            .hero h1 {
+                max-width: 470px;
+                font-size: clamp(56px, 13vw, 76px);
+            }
+
+            .hero-copy {
+                margin-block: 18px 23px;
+                font-size: 13px;
+            }
+
+            .hero-art,
+            .hero-art img {
+                min-height: 350px;
+                height: 350px;
+            }
+
+            .image-caption {
+                right: 10px;
+                bottom: 12px;
+                padding: 13px 15px;
+            }
+
+            .collection {
+                padding-block: 38px 62px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .artifact-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+            }
+
+            .artifact-image {
+                aspect-ratio: 1.12 / 1;
+            }
+
+            .artifact-meta h3 {
+                font-size: 19px;
+            }
+
+            .story-band {
+                grid-template-columns: 1fr;
+                margin-bottom: 62px;
+            }
+
+            .story-image {
+                min-height: 290px;
+                height: 290px;
+            }
+
+            .story-image img {
+                min-height: 290px;
+            }
+
+            .story-copy {
+                padding: 34px 25px 38px;
+            }
+
+            .newsletter {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 23px;
+                padding-block: 32px;
+            }
+
+            .newsletter h2 {
+                font-size: 29px;
+            }
+
+            .newsletter-form {
+                width: 100%;
+            }
+
+            .footer-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 17px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="page-shell nav-wrap">
+            <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 7h18M3 12h18M3 17h18"></path>
+                </svg>
+            </button>
+            <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
+                <a href="#collection">The collection</a>
+                <a href="#stories">Our story</a>
+                <a href="blog.html">Journal</a>
+            </nav>
+            <a class="brand" href="#top" aria-label="Sanaa Yetu home">
+                <span class="brand-mark" aria-hidden="true">S</span>
+                <span class="brand-copy" aria-hidden="true">
+                    <marquee class="brand-name" direction="left" scrollamount="3">SANAA YETU · SANAA YETU ·</marquee>
+                    <marquee class="brand-tagline" direction="left" scrollamount="2">ART HELD IN MEMORY · ART HELD IN MEMORY ·</marquee>
+                </span>
+            </a>
+            <div class="nav-actions">
+                <a href="#collection" aria-label="Explore the collection">
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                        <path d="m16 16 4.5 4.5"></path>
+                    </svg>
+                </a>
+                <a class="nav-label" href="contact.html">Get in touch</a>
+                <button class="account-trigger" type="button" data-account-open>Sign in</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="page-shell hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <p class="eyebrow">Art, held in memory</p>
+                <h1 id="hero-title">Every object<br>holds a <em>story.</em></h1>
+                <p class="hero-copy">A gathering place for the art, craft, and wisdom of the African continent. Meet the makers, meanings, and moments carried in every piece.</p>
+                <a class="button-link" href="#collection">
+                    Explore the collection
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M10 4l6 6-6 6"></path></svg>
+                </a>
+            </div>
+            <div class="hero-art">
+                <img src="images/image0.png" alt="Sculptural portrait decorated with colorful beadwork">
+                <div class="image-caption">
+                    <span>From the archive · 01</span>
+                    <strong>A face of memory</strong>
+                    <small>Sculptural portrait · Beadwork &amp; form</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-shell collection" id="collection" aria-labelledby="collection-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Selected works</p>
+                    <h2 id="collection-title">A world of making</h2>
+                </div>
+                <a class="text-link" href="#stories">
+                    View the collection
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M10 4l6 6-6 6"></path></svg>
+                </a>
+            </div>
+            <div class="artifact-grid">
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Patterns in clay">
+                        <div class="artifact-image">
+                            <img src="images/image9.png" alt="Handmade ceramic bowls with painted patterns" loading="lazy">
+                            <span class="artifact-index">01 / OBJECTS</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Patterns in clay</h3>
+                                <p>Handmade ceramics · Painted forms</p>
+                            </div>
+                            <span class="artifact-year">POTTERY</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Woven in colour">
+                        <div class="artifact-image">
+                            <img src="images/image8.png" alt="Colorful woven baskets and natural-fiber trays" loading="lazy">
+                            <span class="artifact-index">02 / WEAVING</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Woven in colour</h3>
+                                <p>Basketry · Pattern &amp; natural fibre</p>
+                            </div>
+                            <span class="artifact-year">WEAVING</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Adornment in detail">
+                        <div class="artifact-image">
+                            <img src="images/image6.png" alt="Close view of colorful beadwork and traditional adornment" loading="lazy">
+                            <span class="artifact-index">03 / HERITAGE</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Adornment in detail</h3>
+                                <p>Beadwork · Craft &amp; expression</p>
+                            </div>
+                            <span class="artifact-year">BEADWORK</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover A gathering of forms">
+                        <div class="artifact-image">
+                            <img src="images/image10.png" alt="Display of handcrafted ceramic bowls, plates, and carved pieces" loading="lazy">
+                            <span class="artifact-index">04 / OBJECTS</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>A gathering of forms</h3>
+                                <p>Decorative arts · Clay &amp; carving</p>
+                            </div>
+                            <span class="artifact-year">CERAMICS</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover The makers’ market">
+                        <div class="artifact-image">
+                            <img src="images/image5.png" alt="Artisan seated among handmade woven goods at an outdoor market" loading="lazy">
+                            <span class="artifact-index">05 / MAKERS</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>The makers’ market</h3>
+                                <p>Craft &amp; community · At the market</p>
+                            </div>
+                            <span class="artifact-year">PEOPLE</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Worn with meaning">
+                        <div class="artifact-image">
+                            <img src="images/image7.png" alt="Handmade necklaces, shells, and beaded ornaments displayed at a market" loading="lazy">
+                            <span class="artifact-index">06 / ADORNMENT</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Worn with meaning</h3>
+                                <p>Adornment · Beads &amp; natural materials</p>
+                            </div>
+                            <span class="artifact-year">JEWELLERY</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Stories in dress">
+                        <div class="artifact-image">
+                            <img src="images/image3.png" alt="Man wearing patterned traditional clothing and natural-fiber adornment" loading="lazy">
+                            <span class="artifact-index">07 / CULTURE</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Stories in dress</h3>
+                                <p>Adornment · Pattern &amp; tradition</p>
+                            </div>
+                            <span class="artifact-year">TEXTILES</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="artifact-card">
+                    <a href="#stories" aria-label="Discover Across generations">
+                        <div class="artifact-image">
+                            <img src="images/image4.png" alt="Portrait of two women wearing coordinated traditional dress and coral beads" loading="lazy">
+                            <span class="artifact-index">08 / PORTRAITS</span>
+                        </div>
+                        <div class="artifact-meta">
+                            <div>
+                                <h3>Across generations</h3>
+                                <p>Portrait · Family &amp; heritage</p>
+                            </div>
+                            <span class="artifact-year">PEOPLE</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-shell story-band" id="stories" aria-labelledby="story-title">
+            <div class="story-image">
+                <img src="images/image1.png" alt="Smiling man in red traditional dress and colorful beadwork" loading="lazy">
+            </div>
+            <div class="story-copy">
+                <p class="eyebrow">More than an object</p>
+                <h2 id="story-title">Made by hand.<br>Remembered together.</h2>
+                <p>Sanaa Yetu means “our art.” We bring the stories behind African creativity into focus: honoring the people, places, and practices that keep culture in motion.</p>
+                <a class="text-link" href="#newsletter">
+                    Get to know us
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M10 4l6 6-6 6"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="page-shell newsletter" id="newsletter" aria-labelledby="newsletter-title">
+            <div>
+                <p class="eyebrow">Letters from the archive</p>
+                <h2 id="newsletter-title">Keep a story close.</h2>
+                <p>New works, people, and perspectives—delivered occasionally.</p>
+            </div>
+            <div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <label class="visually-hidden" for="email-address">Your email address</label>
+                    <input id="email-address" type="email" name="email" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" aria-label="Subscribe to the newsletter">
+                        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M10 4l6 6-6 6"></path></svg>
+                    </button>
+                </form>
+                <p class="form-message" id="form-message" aria-live="polite"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-shell site-footer">
+        <div class="footer-top">
+            <div>
+                <a class="brand" href="#top" aria-label="Sanaa Yetu home">
+                    <span class="brand-mark" aria-hidden="true">S</span>
+                    <span class="brand-name">SANAA YETU</span>
+                </a>
+                <p class="footer-note">A living archive for the art and stories that shape us.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="#collection">The collection</a>
+                <a href="#stories">About Sanaa Yetu</a>
+                <a href="contact.html">Get in touch</a>
+                <a href="https://www.instagram.com/tim-mulwa/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                <a href="blog.html">Journal</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>© <span id="current-year">2026</span> Sanaa Yetu. Made with care.</span>
+            <span>Art belongs to all of us.</span>
+        </div>
+    </footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
